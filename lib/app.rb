@@ -1,7 +1,7 @@
 require 'net/http'
 require 'uri'
 require 'json'
-
+require 'date'
 def get_data_api
   uri = URI.parse("https://api.github.com/repos/Dinda-com-br/braspag-rest/commits")
   @response = Net::HTTP.get_response(uri)
@@ -34,9 +34,13 @@ def set_data
   end
 end
 
+def save_file
+  f= File.new("braspag-rest-#{DateTime.now}.txt", "w");
+  f.close
+end
 
 def main
-  set_data
+  save_file
 end
 
 main
